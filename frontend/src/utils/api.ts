@@ -2,7 +2,7 @@ import axios from 'axios';
 import { AnalysisResult, FormValues } from '../types'; // Using relative path from src
 import { AuthFormValues, AuthResponse } from '../types/auth'; // We will create this new types file next
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * analyzeResumeApi
