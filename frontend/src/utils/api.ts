@@ -3,7 +3,7 @@ import { AnalysisResult, FormValues } from '../types';
 import { AuthFormValues, AuthResponse } from '../types/auth'; // We will create this new types file next
 import { HistoryResponse } from '../types/history'; // We will create this new types file next
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * analyzeResumeApi
