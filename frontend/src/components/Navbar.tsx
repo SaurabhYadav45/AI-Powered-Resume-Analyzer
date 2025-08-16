@@ -1,14 +1,13 @@
 "use client";
 
-import Link from 'next/link';
-import { FileText, LogOut } from 'lucide-react';
-// Corrected path to use Next.js alias
-import { useAuth } from '@/hooks/useAuth';
+import { FileText, LogOut, History } from 'lucide-react';
+// Corrected relative path from src/components/
+import { useAuth } from '../hooks/useAuth';
 
 /**
  * Navbar Component (Updated)
  * @description A responsive navigation bar that now dynamically changes
- * based on the user's authentication status.
+ * based on the user's authentication status, including a link to the history page.
  */
 export const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
@@ -19,32 +18,39 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo and App Name */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center space-x-2 text-indigo-600 hover:text-indigo-800 transition-colors">
+            <a href="/" className="flex items-center space-x-2 text-indigo-600 hover:text-indigo-800 transition-colors">
               <FileText className="h-8 w-8" />
               <span className="text-xl font-bold tracking-tight">Resume Analyzer</span>
-            </Link>
+            </a>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              <Link href="/upload" className="text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+              <a href="/upload" className="text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                 Analyze
-              </Link>
+              </a>
               
               {/* Conditional Rendering based on login status */}
               {isLoggedIn ? (
-                <button
-                  onClick={logout}
-                  className="flex items-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Logout
-                </button>
+                <>
+                  {/* Add the History link for logged-in users */}
+                  <a href="/history" className="flex items-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                    <History className="mr-2 h-4 w-4" />
+                    History
+                  </a>
+                  <button
+                    onClick={logout}
+                    className="flex items-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                  </button>
+                </>
               ) : (
-                <Link href="/login" className="text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <a href="/login" className="text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   Login
-                </Link>
+                </a>
               )}
             </div>
           </div>
