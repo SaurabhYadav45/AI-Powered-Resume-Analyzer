@@ -1,6 +1,6 @@
 /**
- * server.js (Updated)
- * @description The entry point for the backend application.
+ * @description 
+ * The entry point for the backend application.
  * Now includes the logic to connect to the MongoDB database.
  */
 
