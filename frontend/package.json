@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --no-lint",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "next build && next export",
+    "start": "serve out"
   },
   "engines": {
     "node": "18.x"
@@ -32,6 +31,7 @@
     "@types/recharts": "^1.8.29",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
+    "serve": "^14.2.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
