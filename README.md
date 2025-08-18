@@ -10,10 +10,10 @@ A full-stack web application that leverages generative AI to provide instant, de
 
 | Home Page | Results Dashboard |
 |----------------------|-----------------|
-| <img width="100%" alt="Home Page" src="https://github.com/user-attachments/assets/84fbfe13-d2fe-4f48-9e70-d16608b8a9d0?text=Home+Page" /> | <img width="100%" alt="Results Dashboard" src="https://github.com/user-attachments/assets/d472588f-e34d-46ce-9871-e1d113a00ab4?text=Result+Dashboard" /> |
+| <img width="100%" alt="Home Page" src="https://github.com/user-attachments/assets/6b42355b-b2b5-439b-bdad-5802beab3fa2?text=Home+Page" /> | <img width="100%" alt="Results Dashboard" src="https://github.com/user-attachments/assets/d472588f-e34d-46ce-9871-e1d113a00ab4?text=Result+Dashboard" /> |
 | Login Page | Upload & Analyze Page |
 |-----------------------|----------------------|
-| <img width="100%" alt="Login Paget" src="https://github.com/user-attachments/assets/963ad768-ae32-4f29-8522-eb700bc15808?text=Resume+Feedback" /> | <img width="100%" alt="upload Page" src="https://github.com/user-attachments/assets/390f9e5e-be57-4593-ad91-b93c33b4415c?text=Job+Suggestions" /> |
+| <img width="100%" alt="Login Paget" src="https://github.com/user-attachments/assets/f29eec36-97ef-471d-b7de-575ced478c66?text=Resume+Feedback" /> | <img width="100%" alt="upload Page" src="https://github.com/user-attachments/assets/727599ac-27a4-4783-8974-1367a0bf349a?text=Job+Suggestions" /> |
 ---
 
 ## Features
