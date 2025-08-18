@@ -8,10 +8,12 @@ A full-stack web application that leverages generative AI to provide instant, de
 
 ## Screenshots
 
-| Upload & Analyze Page | Results Dashboard |
+| Home Page | Results Dashboard |
 |----------------------|-----------------|
-| <img width="100%" alt="Results Dashboard Screenshot" src="https://github.com/user-attachments/assets/8270dda8-2a76-4046-b1e4-61d0a68d1c51?text=Results+Dashboard" /> | <img width="100%" alt="Upload Page Screenshot" src="https://github.com/user-attachments/assets/00c6534c-6905-4469-a161-3a8f960c0371?text=Upload+Page" />  
- |
+| <img width="100%" alt="Home Page" src="https://github.com/user-attachments/assets/84fbfe13-d2fe-4f48-9e70-d16608b8a9d0?text=Home+Page" /> | <img width="100%" alt="Results Dashboard" src="https://github.com/user-attachments/assets/d472588f-e34d-46ce-9871-e1d113a00ab4?text=Result+Dashboard" /> |
+| Login Page | Upload & Analyze Page |
+|-----------------------|----------------------|
+| <img width="100%" alt="Login Paget" src="https://github.com/user-attachments/assets/963ad768-ae32-4f29-8522-eb700bc15808?text=Resume+Feedback" /> | <img width="100%" alt="upload Page" src="https://github.com/user-attachments/assets/390f9e5e-be57-4593-ad91-b93c33b4415c?text=Job+Suggestions" /> |
 ---
 
 ## Features
@@ -45,7 +47,7 @@ Follow these steps to get a local copy up and running.
 
 ### Prerequisites
 
-- Node.js (v18 or later)  
+- Node.js (v22 or later)  
 - A free MongoDB Atlas account  
 - A Google Gemini API Key  
 
