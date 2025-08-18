@@ -4,7 +4,7 @@ A full-stack web application that leverages generative AI to provide instant, de
 
 ---
 
-### Live Link : https://my-resume-analyzer.onrender.com
+### Live Link : https://my-resume-analyzer.vercel.app
 
 ## Screenshots
 
