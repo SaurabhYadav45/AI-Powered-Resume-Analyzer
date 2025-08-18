@@ -22,7 +22,7 @@ export const Navbar = () => {
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center space-x-2 text-indigo-600 hover:text-indigo-800 transition-colors">
               <FileText className="h-8 w-8" />
-              <span className="text-xl font-bold tracking-tight">Resume Analyzer</span>
+              <span className="text-xl md:text-2xl font-bold tracking-tight ">ResuMate</span>
             </a>
           </div>
 

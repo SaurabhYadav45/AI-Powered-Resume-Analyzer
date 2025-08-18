@@ -112,7 +112,7 @@ export default function UploadPage() {
     <main className="min-h-screen font-sans">
       <div className="container mx-auto p-4 sm:p-6 lg:p-8">
         <header className="text-center mb-10">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 tracking-tight">AI Resume Analyzer</h1>
+          <h1 className="text-4xl sm:text-5xl font-extrabold  tracking-tight bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text">AI Resume Analyzer</h1>
           <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
             Get instant feedback on your resume to see how you match up.
           </p>
@@ -160,7 +160,7 @@ export default function UploadPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center py-4 px-6 border-transparent rounded-xl shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400"
+                  className="w-full flex items-center justify-center py-4 px-6 border-transparent rounded-xl shadow-sm text-lg font-semibold  bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 bg-gradient-to-r from-indigo-500 to-purple-500 text-white cursor-pointer"
                 >
                   {isLoading ? (
                     <><Loader className="animate-spin mr-3 h-5 w-5" /> Analyzing...</>
@@ -186,7 +186,7 @@ export default function UploadPage() {
 
           {analysisResult && (
             <div className="max-w-6xl mx-auto animate-fade-in space-y-8">
-              <h2 className="text-3xl font-bold text-center text-gray-800">Analysis Results</h2>
+              <h2 className="text-3xl font-bold text-center  bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text">Analysis Results</h2>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 <div className="lg:col-span-2"><SkillChart data={analysisResult.keywordFrequency} /></div>
                 <ResultCard title="Skills Match" content={`${analysisResult.skillsMatch}%`} />
@@ -202,7 +202,7 @@ export default function UploadPage() {
                 <button
                   onClick={handleGenerateCoverLetter}
                   disabled={isGeneratingLetter || !jobDescriptionText}
-                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 disabled:bg-green-300"
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 disabled:bg-green-300 cursor-pointer"
                 >
                   {isGeneratingLetter ? (
                     <><Loader className="animate-spin mr-3 h-5 w-5" /> Generating...</>
@@ -217,7 +217,7 @@ export default function UploadPage() {
               <div ref={coverLetterRef}>
                 {coverLetter && (
                   <div className="glass-card rounded-2xl p-6 relative">
-                     <h3 className="text-2xl font-bold text-gray-800 mb-4">Your Generated Cover Letter</h3>
+                     <h3 className="text-2xl font-bold text-gray-800 mb-4 ">Your Generated Cover Letter</h3>
                      <textarea
                        readOnly
                        value={coverLetter}

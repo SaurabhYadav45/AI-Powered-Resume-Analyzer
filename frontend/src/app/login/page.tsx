@@ -44,7 +44,7 @@ export default function LoginPage() {
         {/* Apply the .glass-card style to this container */}
         <div className=" rounded-2xl p-8 glass-card-blue">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 tracking-tight">
+            <h1 className="text-3xl font-bold  tracking-tight bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
               {isLoginMode ? 'Welcome Back' : 'Create an Account'}
             </h1>
             <p className="text-gray-600 mt-2">
@@ -92,14 +92,14 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 transition-all duration-300"
+                className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 "
               >
                 {isLoading ? (
                   <Loader className="animate-spin mr-2 h-5 w-5" />
                 ) : isLoginMode ? (
                   <LogIn className="mr-2 h-5 w-5" />
                 ) : (
-                  <UserPlus className="mr-2 h-5 w-5" />
+                  <UserPlus className="mr-2 h-5 w-5"/>
                 )}
                 {isLoginMode ? 'Sign In' : 'Sign Up'}
               </button>
@@ -111,7 +111,7 @@ export default function LoginPage() {
                 setIsLoginMode(!isLoginMode);
                 setError(null);
               }}
-              className="text-sm text-indigo-600 hover:text-indigo-500"
+              className="text-sm text-indigo-600 hover:text-indigo-500 "
             >
               {isLoginMode ? 'Need an account? Sign Up' : 'Already have an account? Sign In'}
             </button>
