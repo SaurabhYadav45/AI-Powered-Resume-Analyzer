@@ -8,8 +8,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,3 +22,58 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Main animated background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at top left, rgba(121, 106, 255, 0.5), transparent 50%),
+              radial-gradient(circle at bottom right, rgba(0, 255, 255, 0.5), transparent 50%);
+  filter: blur(100px);
+  z-index: -1;
+  animation: animate-gradient 15s ease-in-out infinite;
+}
+
+@keyframes animate-gradient {
+  0% { transform: rotate(0deg) scale(1.2); }
+  50% { transform: rotate(180deg) scale(1.5); }
+  100% { transform: rotate(360deg) scale(1.2); }
+}
+
+main {
+  background-color: transparent;
+}
+
+/* Base glass-card style (for Navbar and others) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* NEW: Purple tint for the upload form */
+.glass-card-purple {
+  background: rgba(237, 232, 255, 0.5); /* Semi-transparent light purple */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* NEW: Blue tint for the login form */
+.glass-card-blue {
+  background: rgba(224, 242, 254, 0.5); /* Semi-transparent light blue */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(1px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+

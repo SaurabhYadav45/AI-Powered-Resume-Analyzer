@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
+
 /**
  * HomePage
  * @description The main landing page for the application.

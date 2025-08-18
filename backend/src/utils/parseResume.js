@@ -1,23 +1,13 @@
 /**
- * parseResume Utility
- * @description Extracts plain text from uploaded resume files (PDF or DOCX).
- * It relies on the 'pdf-parse' and 'mammoth' libraries.
+ * parseResume Utility (with OCR)
+ * @description Extracts plain text from uploaded files (PDF, DOCX, and Images).
  */
 
-// Import the necessary libraries. You will need to install these:
-// npm install pdf-parse mammoth
 const pdf = require('pdf-parse');
 const mammoth = require('mammoth');
+const { createWorker } = require('tesseract.js'); // 1. Import Tesseract
 
 const parseResume = {
-  /**
-   * @async
-   * @function getText
-   * @description Determines the file type and uses the appropriate parser to extract text.
-   * @param {object} file - The file object provided by Multer. It contains the file buffer and mimetype.
-   * @returns {Promise<string>} A promise that resolves with the extracted plain text from the file.
-   * @throws {Error} Throws an error if the file is missing, the type is unsupported, or parsing fails.
-   */
   getText: async (file) => {
     if (!file) {
       throw new Error("No file was provided for parsing.");
@@ -26,22 +16,32 @@ const parseResume = {
     const { buffer, mimetype } = file;
 
     try {
-      // Check the mimetype to decide which parser to use
+      // Handle PDF
       if (mimetype === 'application/pdf') {
         console.log('--- [Parser] Parsing PDF file... ---');
         const data = await pdf(buffer);
         return data.text;
-      } else if (mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      } 
+      // Handle DOCX
+      else if (mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
         console.log('--- [Parser] Parsing DOCX file... ---');
         const result = await mammoth.extractRawText({ buffer });
         return result.value;
-      } else {
-        // If the file is neither a PDF nor a DOCX, throw an error.
-        throw new Error('Unsupported file type. Please upload a PDF or DOCX.');
+      } 
+      // 2. Handle Images (JPG, PNG)
+      else if (mimetype === 'image/jpeg' || mimetype === 'image/png') {
+        console.log(`--- [Parser] Parsing Image file (${mimetype}) with OCR... ---`);
+        const worker = await createWorker('eng'); // 'eng' for English
+        const { data: { text } } = await worker.recognize(buffer);
+        await worker.terminate(); // Clean up the worker process
+        return text;
+      } 
+      // Handle unsupported types
+      else {
+        throw new Error('Unsupported file type. Please upload a PDF, DOCX, JPG, or PNG.');
       }
     } catch (error) {
         console.error("--- [Parser] Error parsing file: ---", error);
-        // Re-throw a more user-friendly error to be caught by the controller.
         throw new Error("Failed to read the content of the resume file.");
     }
   }

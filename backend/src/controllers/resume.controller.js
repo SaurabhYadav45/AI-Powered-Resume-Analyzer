@@ -1,6 +1,6 @@
 /**
  * resume.controller.js (Updated)
- * @description Controller for handling resume analysis and history.
+ * @description Controller for handling resume analysis, history, and cover letter generation.
  */
 
 const jwt = require('jsonwebtoken');
@@ -24,7 +24,6 @@ const resumeController = {
       const { jobDescription } = req.body;
       const analysisResult = await aiAnalysis.analyze(resumeText, jobDescription);
 
-      // --- Check for a logged-in user and save history ---
       const authHeader = req.headers.authorization;
       if (authHeader && authHeader.startsWith('Bearer ')) {
         try {
@@ -45,7 +44,9 @@ const resumeController = {
         console.log('--- [Controller] No user token found. Proceeding as anonymous user. ---');
       }
 
-      res.status(200).json(analysisResult);
+      // We'll also send back the extracted resume text to the frontend
+      // so we can use it for the cover letter generation without a second upload.
+      res.status(200).json({ analysisResult, resumeText });
 
     } catch (error) {
       console.error('--- [Controller] An error occurred during analysis: ---', error);
@@ -53,20 +54,35 @@ const resumeController = {
     }
   },
 
-  /**
-   * @async
-   * @function getHistory
-   * @description Fetches all analysis history for the logged-in user.
-   */
   getHistory: async (req, res) => {
     try {
-      // The `protect` middleware attaches the user's ID to req.user.id
-      const analyses = await Analysis.find({ user: req.user.id }).sort({ createdAt: -1 }); // Sort by most recent
-      
+      const analyses = await Analysis.find({ user: req.user.id }).sort({ createdAt: -1 });
       res.status(200).json(analyses);
     } catch (error) {
       console.error('--- [History Error] ---', error);
       res.status(500).json({ message: 'Server error while fetching analysis history.' });
+    }
+  },
+
+  /**
+   * @async
+   * @function generateCoverLetter
+   * @description Generates a cover letter using the AI.
+   */
+  generateCoverLetter: async (req, res) => {
+    const { resumeText, jobDescription } = req.body;
+
+    if (!resumeText || !jobDescription) {
+      return res.status(400).json({ message: 'Resume text and job description are required.' });
+    }
+
+    try {
+      // We will call a new method in our aiAnalysis utility
+      const coverLetter = await aiAnalysis.generateCoverLetter(resumeText, jobDescription);
+      res.status(200).json({ coverLetter });
+    } catch (error) {
+      console.error('--- [Cover Letter Error] ---', error);
+      res.status(500).json({ message: 'Server error while generating cover letter.' });
     }
   }
 };

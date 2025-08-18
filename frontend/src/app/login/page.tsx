@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LogIn, UserPlus, Loader } from 'lucide-react';
@@ -10,13 +10,13 @@ import { loginUser, signupUser } from '../../utils/api';
 import { authSchema, AuthFormValues } from '../../types/auth';
 
 /**
- * LoginPage (Functional)
- * @description A fully functional page for user signup and login.
+ * LoginPage (with Glassmorphism)
+ * @description A fully functional page for user signup and login with an updated UI.
  */
 export default function LoginPage() {
-  const [isLoginMode, setIsLoginMode] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isLoginMode, setIsLoginMode] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   const { register, handleSubmit, formState: { errors } } = useForm<AuthFormValues>({
     resolver: zodResolver(authSchema),
@@ -28,13 +28,8 @@ export default function LoginPage() {
 
     try {
       const response = isLoginMode ? await loginUser(data) : await signupUser(data);
-      
-      // Save the token to localStorage for session persistence
       localStorage.setItem('authToken', response.token);
-      
-      // Redirect to the homepage after successful login/signup
       window.location.href = '/';
-
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || 'An unexpected error occurred.';
       setError(errorMessage);
@@ -44,14 +39,15 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8 bg-gray-50">
+    <main className="flex  flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
       <div className="w-full max-w-md">
-        <div className="bg-white shadow-lg rounded-2xl p-8">
+        {/* Apply the .glass-card style to this container */}
+        <div className=" rounded-2xl p-8 glass-card-blue">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-800 tracking-tight">
               {isLoginMode ? 'Welcome Back' : 'Create an Account'}
             </h1>
-            <p className="text-gray-500 mt-2">
+            <p className="text-gray-600 mt-2">
               {isLoginMode ? 'Sign in to access your analysis history.' : 'Sign up to save and view your results.'}
             </p>
           </div>
@@ -66,7 +62,7 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   {...register('email')}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-3 py-2 bg-white/60 border border-white/50 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   placeholder="you@example.com"
                 />
                 {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>}
@@ -74,7 +70,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password"  className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <div className="mt-1">
@@ -83,7 +79,7 @@ export default function LoginPage() {
                   type="password"
                   autoComplete="current-password"
                   {...register('password')}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-3 py-2 bg-white/60 border border-white/50 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   placeholder="••••••••"
                 />
                 {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password.message}</p>}
