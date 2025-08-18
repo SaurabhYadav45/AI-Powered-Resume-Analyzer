@@ -3,7 +3,7 @@ import { AnalysisResult, FormValues, AnalyzeApiResponse } from '../types';
 import { AuthFormValues, AuthResponse } from '../types/auth';
 import { HistoryResponse } from '../types/history';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5001/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
 
 /**
  * analyzeResumeApi (Updated)
