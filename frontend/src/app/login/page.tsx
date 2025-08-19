@@ -29,7 +29,7 @@ export default function LoginPage() {
     try {
       const response = isLoginMode ? await loginUser(data) : await signupUser(data);
       localStorage.setItem('authToken', response.token);
-      window.location.href = '/';
+      window.location.href = '/upload';
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || 'An unexpected error occurred.';
       setError(errorMessage);
@@ -92,7 +92,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 "
+                className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 cursor-pointer"
               >
                 {isLoading ? (
                   <Loader className="animate-spin mr-2 h-5 w-5" />
